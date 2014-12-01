@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Async Javascript</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="js/styles/sunburst.css">
+		<link rel="stylesheet" href="js/highlight.pack.js">
+		// <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+		<script type="text/javascript">hljs.initHighlightingOnLoad(); </script>
+		
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1 align='left'>Asynchronous</h1>
+            		<h1 align='right'>Javascript</h1>
+					<br />
+					<br />
+					<br />
+					<p><small>At MakersAcademy by Pablo</small></p>
+					
+				</section>
+
+				<section>
+					<h2>Async Js</h2>
+					<br />
+					<p align='left'>- Understanding what is asynchronous javascript</p>
+					<br />
+		            <p align='left'>- A few short !== simple exercises</p>
+		            <br />
+		            <p align='left'>- Realising we didn’t understand point 1</p>
+		            <br />
+		            <p align='left'>- Concepts that play a role in async javascript</p>
+		            <br />
+		            <p align='left'>- Do I understand now the async pattern?</p>
+		            <br />
+		            <p align='left'>- Resources for those that say no</p>
+		            <br />
+		            <p align='left'>- Resources for those that say yes</p>
+		            
+
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+				</section>
+
+				
+					<section data-transition="linear" data-background="#8c4738" data-background-transition="slide">
+						<h4 align='left'>and there was ruby...</h4>
+			            <h4 align='left'>and I like it!!, because when I run this:</h4>
+			            <br />
+
+			            <pre><code class="ruby hljs" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+puts "puts in line one, Im the first one"
+
+sleep(2)
+
+puts "puts in line two"
+			            </code></pre>
+
+			            <br />
+			             <h4 align='left'>I get this:</h4>
+			            <br />
+
+			            <pre><code class="" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+puts in line one, Im the first one
+
+//waits 2 sec
+
+puts in line two
+			            </code></pre>
+			            <br />
+			            <h6 align='right'>and everybody was so happy</h6>
+						
+					<aside class="notes">
+						It’s easier to understand async if you first understand what “synchronous”, the opposite, means.
+					think about people, they are asynchronous, for example a have a  synchronous friend 
+					In programming, we can simplify the definition of synchronous code as “a bunch of statements in sequence”; so each statement in your code is executed one after the other.
+
+					HAVE YOU USED  async javascript already?(wait)
+					jquery
+					</aside>
+				</section>
+					
+
+				<section>
+				 <h6 align='left'>But now in javascript, I run this:</h6>
+               <br />
+           <pre><code class="ruby hljs" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+setTimeout( function() { console.log('Im the first console.log') }
+
+, 2000);
+
+console.log('Im the second console log');
+					</code></pre>
+            <br />
+            <h6 align='left'>and I got this:</h6>
+            <br />
+            <pre><code class="" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+Im the second console log
+
+//waits  2 sec
+
+Im the first console.log
+			            </code></pre>
+			            <br />
+        			<h6 align='right'>no bueno</h6>
+        	<aside class="notes">
+						 <p>“synchronous” means to define async</p>
+					 <p>a  synchronous friend </p>
+					<p>In programming,  each statement in your code is executed one after the other.</p>
+				HAVE YOU USED  async javascript already?
+					</aside>
+				</section>
+
+				<section>
+		   <h2>Exercises</h2>
+            <p align='center'>Using async javascript</p>
+        </section>
+      
+        <section>
+            <h3 align='left'>Execise 1: What is the setTimeout doing?</h3>
+               <br />
+           <pre><code class="javascript hljs" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+setTimeout( function() { console.log('Im the first console.log') }
+
+, 2000);
+
+console.log('Im the second console log');
+					</code></pre>
+            <br />
+             <h6 align='left'>Why do I get this?</h6>
+            <br />
+           <pre><code class="" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+Im the second console log
+
+//wait 2 sec
+
+Im the first console.log
+					</code></pre>
+				</section>
+
+				<section>
+					 <h3 align='center'>Execise 1: Solution</h3>
+               <br />
+           <p align='left'>setTimeout(function, time) is a function that receives 2 parameters:</p>
+            <br />
+           <p align='left'>- the first parameter is another function</p>
+            <br />
+           <p align='left'>- the second parameter is a time in milliseconds</p>
+            <br />
+           <p align='left'>- and it will execute the function received as a first parameter after the time we pass as a second parameter</p>
+				</section>
+
+				<section>
+					  <h3 align='left'>Execise 2: We know what timeout() does</h3>
+            <br />
+            <p align='left'>What is the output of this script?</p>
+            <br />
+            <pre><code class="js hljs" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+setTimeout(function() { console.log('Im console.log in line one') }
+
+, 3000);
+
+setTimeout(function() { console.log('Im console.log in line two') }
+
+, 2000);
+
+console.log('console log in line three')
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h3 align='center'>Execise 2: Solution</h3>
+					<br />
+				   <pre><code class="javaScript hljs" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+setTimeout(function() { console.log('Im console.log in line one') }
+
+, 3000);
+
+setTimeout(function() { console.log('Im console.log in line two') }
+
+, 2000);
+
+console.log('console log in line three')
+					</code></pre>
+				
+				<br />
+          <pre><code class="" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+console log in line three
+
+console log in line two
+
+console log in line one
+					</code></pre>
+				</section>
+
+				<section>
+					
+					  <h3 align='center'>Execise 3: Yes timeout() again...</h3>
+            <br />
+            <p align='left'>What is the output of this script?</p>
+            <br />
+           <pre><code class="javascript hljs" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+for(var i = 0; i < 5; i++) {
+
+  console.log("Calling setTimeout for value: " + i);
+
+  setTimeout( function() { console.log(i) }, 1000);
+
+};
+					</code></pre>
+				</section>
+
+				<section>
+		     <h3 align='center'>Execise 3: Solution</h3>
+            <br />
+             <pre><code class="" style="font-size: 22px; margin-top: 20px; padding: 4px;">
+Calling setTimeout for value: 0
+
+Calling setTimeout for value: 1
+
+Calling setTimeout for value: 2
+
+Calling setTimeout for value: 3
+
+Calling setTimeout for value: 4
+
+//wait 2 seconds
+
+5
+
+5
+
+5
+
+5
+
+5
+				</code></pre>
+				</section>
+
+				<section>
+					<h2 align='center'>Why?</h2>
+				</section>
+
+				<section>
+					<h3 align='center'>Last Exercise</h3>
+					<br />
+					<p align='left'>Write the code that generates the following output:</p>
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+Calling setTimeout for value: 0
+
+Calling setTimeout for value: 1
+
+Calling setTimeout for value: 2
+
+Calling setTimeout for value: 3
+
+Calling setTimeout for value: 4
+
+0
+
+1
+
+2
+
+3
+
+4
+				</code></pre>
+				</section>
+
+				<section data-state="customevent">
+					<h3 align='center'>Execise 4: Solution</h3>
+            <br />
+					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+for (var i = 0; i < 4; ++i) {
+ 
+  wrappingTimeout(i);
+
+};
+
+function wrappingTimeout(i) {
+
+  console.log("Calling setTimeout for value: " + i);
+
+  setTimeout(function() { console.log(i); }, 2000);
+
+};
+					</code></pre>
+				</section>
+
+								<section data-state="customevent">
+					
+						<section id="fragments">
+						<h3 align='left'>Asynchronous is simple</h3>
+						<br />
+						<br />
+            <p align='left'> but you need to understand Javascript, meaning:</p>
+						<br />
+						<ol>
+							<li class="fragment"><em>understanding hoisting</em></li>
+							<br />
+							<li class="fragment"><em>understanding scope</em></li>
+							<br />
+							<li class="fragment"><em>understanding clousures</em></li>
+							<br />
+							<li class="fragment"><em>and of course understanding  the event loop</em></li>
+							<br />
+							<li class="fragment"><em>...</em></li>
+						</ol>
+						</section>
+				</section>
+
+				<section>
+					
+					<section>
+						<h3 align='center'>What is the Event Loop?</h3>
+						<hr />
+						<h3 class="fragment">Queue of messages and callbacks </h3>
+					</section>
+
+					<section>
+						<h3 align='center'>Event Loop I</h3>
+						<img width="238" height="538" src="images/eL1.png" alt="Down arrow">
+          </section>
+          
+
+          <section>
+          	<h3 align='center'>Event Loop II</h3>
+          	<img width="478" height="538" src="images/eL2.png" alt="Down arrow">
+
+					</section>
+
+					<section>
+          	<h3 align='center'>Event Loop III</h3>
+          	<img width="478" height="538" src="images/eL3.png" alt="Down arrow">
+					</section>
+
+					<section>
+						<h3 align='center'>Event Loop IV</h3>
+						<img width="478" height="538" src="images/eL4.png" alt="Down arrow">
+          </section>
+
+          <section>
+						<h3 align='center'>Event Loop IV</h3>
+						<img width="478" height="538" src="images/eL5.png" alt="Down arrow">
+          </section>
+
+          <section>
+						<h3 align='center'>Event Loop IV</h3>
+						<img width="478" height="538" src="images/eL6.png" alt="Down arrow">
+          </section>
+
+				</section>
+
+
+				<section>
+					<h2>Do I understand the Asynchronous pattern?</h2>
+				</section>
+
+				<section>
+					<h2>Resources for those saying no</h2>
+					<ul>
+						<li><a href="http://rowanmanning.com/posts/javascript-for-beginners-async/">Good and short explanation about AJ</a></li>
+						<li><a href="http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/">Event loop</a></li>
+						<li><a href="http://www.slideshare.net/mattmatt/the-current-state-of-asynchronous-processing-with-ruby">Asynchronous in ruby</a></li>
+						<li><a href="https://github.com/rvagg/learnyounode">learnyounode</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Resources for those saying yes</h2>
+					<ul>
+						<li><a href="http://en.wikipedia.org/wiki/Ajax_%28programming%29">AJAX</a></li>
+						<li><a href="http://abdulapopoola.com/2014/11/29/3-ways-to-start-using-promises/">Promises</a></li>
+						<li><a href="http://javascriptplayground.com/blog/2013/06/think-async/">How to use async on node</a></li>
+					</ul>
+				</section>
+
+				<section>
+					
+					<h2>Can I avoid to use Aj?</h2>
+					<br />
+					<ul>
+						<li class="fragment">Timers: setTimeout( ) or setInterval( )</li>
+						<br />
+						<li class="fragment">XHRs: xhr.send( )</li>
+						<br />
+						<li class="fragment">Promises: promise has been resolved.</li>
+						<br />
+						<li class="fragment">Object.observe</li>
+						<br />
+						<li class="fragment">FileSystem API</li>
+						<br />
+						<li class="fragment">Eligible DOM events via addEventListener()</li>
+						<br />
+						<li class="fragment">Multimedia events via addEventListener</li>
+						<br />
+						<li class="fragment">...</li>
+					</ul>
+			
+				</section>
+
+				<section>
+					<h2>TO BE CONTINUED...</h2>
+					<br />
+					<br />
+					<br />
+					<h6 align='right'>Thanks</h6>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					// { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
