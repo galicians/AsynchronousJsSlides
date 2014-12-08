@@ -3,8 +3,7 @@
 ## Lecture at Makers Academy in Asynchronous Javascript by Pablo:
 
 <p align='left'>- Understanding what is asynchronous javascript</p>
-					<br />
-		            <p align='left'>- A few short !== simple exercises</p>
+<p align='left'>- A few short !== simple exercises</p>
 		            <br />
 		            <p align='left'>- Realising we didn’t understand point 1</p>
 		            <br />
