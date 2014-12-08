@@ -1,6 +1,6 @@
 # Asynchronous javascript
 
-## Lecture at Makers Academy in Asynchronous Javascript by Pablo:
+### Lecture at Makers Academy in Asynchronous Javascript by Pablo
 
 <p align='left'>- Understanding what is asynchronous javascript</p>
 <p align='left'>- A few short !== simple exercises</p>
